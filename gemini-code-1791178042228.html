@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصتي التعليمية - E-Learning Platform</title>
+    <style>
+        /* CSS Core Styles */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Courses Grid */
+        .section-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .course-img {
+            width: 100%;
+            height: 160px;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .course-content {
+            padding: 1.2rem;
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Interactive Lesson Player Section */
+        .player-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe, .video-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .playlist {
+            list-style: none;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .playlist-item {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .playlist-item:hover, .playlist-item.active {
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .player-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">أكاديمية التعلم</div>
+            <ul class="nav-links">
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#courses">الكورسات</a></li>
+                <li><a href="#player">مشاهدة الدرس</a></li>
+            </ul>
+            <button class="btn-primary">تسجيل الدخول</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>طوّر مهاراتك اليوم مع أحدث الكورسات التفاعلية</h1>
+            <p>منصة تعليمية متكاملة تساعدك على الشرح، المتابعة، والتفاعل بسهولة.</p>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <h2 class="section-title">الكورسات المتاحة</h2>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Data will be dynamically rendered by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Interactive Lesson Player -->
+        <section id="player">
+            <h2 class="section-title">استعراض محتوى الكورس</h2>
+            <div class="player-section">
+                <div class="video-container">
+                    <div class="video-placeholder" id="videoDisplay">
+                        اختر درساً من القائمة لبدء التشغيل
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem;">قائمة الدروس</h3>
+                    <ul class="playlist" id="playlist">
+                        <!-- Playlist items rendered by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Sample Course Data
+        const courses = [
+            { id: 1, title: 'أساسيات البرمجة بالذكاء الاصطناعي', instructor: 'د. أحمد', lessons: 12, price: '499 ج.م' },
+            { id: 2, title: 'كورس الأحياء للمرحلة الثانوية', instructor: 'أ. محمد', lessons: 20, price: '350 ج.م' },
+            { id: 3, title: 'مبادئ تصميم الواجهات UX/UI', instructor: 'م. سارة', lessons: 15, price: '550 ج.م' }
+        ];
+
+        // Sample Lessons Data
+        const lessons = [
+            { id: 1, title: '1. مقدمة عن الكورس وأهدافه', duration: '05:30', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
+            { id: 2, title: '2. إعداد بيئة العمل والأدوات', duration: '12:15', url: '' },
+            { id: 3, title: '3. المفاهيم الأساسية والتركيب', duration: '18:40', url: '' },
+            { id: 4, title: '4. التطبيق العملي والاختبار', duration: '10:00', url: '' }
+        ];
+
+        // Render Courses
+        function renderCourses() {
+            const grid = document.getElementById('coursesGrid');
+            grid.innerHTML = courses.map(course => `
+                <div class="course-card">
+                    <div class="course-img">صورة الكورس</div>
+                    <div class="course-content">
+                        <h3 class="course-title">${course.title}</h3>
+                        <div class="course-info">
+                            <span>المحاضر: ${course.instructor}</span>
+                            <span>${course.lessons} درس</span>
+                        </div>
+                        <div style="display:flex; justify-size:space-between; align-items:center;">
+                            <strong style="color:var(--primary-color);">${course.price}</strong>
+                            <button class="btn-primary" onclick="alert('تم اختيار الكورس!')">اشترك الآن</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Playlist
+        function renderPlaylist() {
+            const playlistEl = document.getElementById('playlist');
+            playlistEl.innerHTML = lessons.map((lesson, index) => `
+                <li class="playlist-item ${index === 0 ? 'active' : ''}" onclick="playLesson(${lesson.id}, this)">
+                    <span>${lesson.title}</span>
+                    <span style="font-size:0.8rem; color:var(--text-muted);">${lesson.duration}</span>
+                </li>
+            `).join('');
+        }
+
+        // Play Selected Lesson
+        function playLesson(id, element) {
+            document.querySelectorAll('.playlist-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            
+            const lesson = lessons.find(l => l.id === id);
+            const videoDisplay = document.getElementById('videoDisplay');
+            videoDisplay.innerHTML = `<div style="padding: 20px; text-align: center;">جاري تشغيل: <strong>${lesson.title}</strong></div>`;
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCourses();
+            renderPlaylist();
+        });
+    </script>
+</body>
+</html>
